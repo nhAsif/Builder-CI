@@ -2,7 +2,7 @@ task:
   name: rom
   timeout_in: 120m
   container:
-    dockerfile: Dockerfile
+    dockerfile: Ubuntu-20.04
     cpu: 8
     memory: 32G
   environment:
