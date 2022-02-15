@@ -15,10 +15,5 @@ WORKDIR /home/cirrus-ci-build
 
 RUN apt-get -yqq update && apt-get -yqq upgrade
 
-RUN mkdir -p /home/cirrus-ci-build/ProjectKasumi \
-      && cd /home/cirrus-ci-build/ProjectKasumi \
-      && repo init --depth=1 --no-repo-verify -u git://github.com/ProjectKasumi/android.git -b kasumi-v1 -g default,,-mips,-darwin,-notdefault \
-      && repo sync -c --no-clone-bundle --no-tags --optimized-fetch --force-sync -j4
-
 VOLUME ["/home/cirrus-ci-build/rom", "/home/cirrus-ci-build/ccache"]
 ENTRYPOINT ["/bin/bash"]
