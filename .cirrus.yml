@@ -5,7 +5,7 @@ task:
     dockerfile: Ubuntu-20.04
     cpu: 8
     memory: 32G
-  environment:
+  env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
     rc_conf: "ENCRYPTED[d79606ef07066fa4c032a3d6856423ec8800f30f7ce5e7636e67d6edcd8f69d654788762ece25de098731ce535e917eb]"
     TOKEN: "ENCRYPTED[597d719a92686f0bb8db6e044101608ce2ec67e05626cf3c6d65485dbe0968ef8c076a45a001a55cf72ecbb80da3edc7]"
