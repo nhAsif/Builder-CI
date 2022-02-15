@@ -13,6 +13,8 @@ task:
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
   Environment_script:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
+  Show_command_Script:
+     - cat $CIRRUS_WORKING_DIR/build.sh
   Storage-Check_script:
      - df -h && lsblk && ls -l -a -h
   Sync_rom_script:

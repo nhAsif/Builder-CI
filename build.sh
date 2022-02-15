@@ -9,6 +9,12 @@ lunch kasumi_rosy-userdebug
 export TZ=Asia/Jakarta
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
+export KASUMI_BUILD_TYPE=auroraoss
+export KASUMI_SHIP_LAWNCHAIR=true
+export KASUMI_SHIP_ADAWAY=true
+export KASUMI_BUILD_TYPE=gapps
+export TARGET_GAPPS_ARCH=arm64
+export TARGET_BOOT_ANIMATION_RES=720
 mka bandori &
 sleep 95m
 kill %1
