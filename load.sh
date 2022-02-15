@@ -1,7 +1,7 @@
 #!/bin/bash
 
 name_rom=$(grep init $CIRRUS_WORKING_DIR/sync.sh -m 1 | cut -d / -f 4)
-cd /home/cirrus-ci-build
+cd $CIRRUS_WORKING_DIR
 mkdir -p ~/.config/rclone
 echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
 mkdir -p $CIRRUS_WORKING_DIR/ccache
