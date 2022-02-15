@@ -8,7 +8,7 @@ task:
     memory: 32G
   env:
     BUILD_HOSTNAME: "nfs-project"
-    rcloneconfig: nanti dolo
+    rcloneconfig: "ENCRYPTED[44ffa3857f6328b03c137af6abf4f1aed91717c51cb06ae8c8fae74d96c0e8cc473a802fa8328e48c414c2de236fe21d]"
     CIRRUS_CLONE_DEPTH: 1
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
   Environment_script:
