@@ -6,4 +6,7 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --force-sync -j8
 # build rom
 source build/envsetup.sh
 lunch kasumi_rosy-userdebug
+export TZ=Asia/Jakarta
+export BUILD_USERNAME=rosy
+export BUILD_HOSTNAME=userdebug
 mka bandori
