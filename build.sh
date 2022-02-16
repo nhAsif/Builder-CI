@@ -1,7 +1,7 @@
 #sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/NFS-projects/manifest.git -b kasumi-v1 -g default,,-mips,-darwin,-notdefault
-git clone https://github.com/NFS86/local_manifest -b kasumi .repo/local_manifests
-repo sync -c --no-clone-bundle --no-tags --optimized-fetch --force-sync -j8
+repo init --depth=1 -u git://git.polycule.co/ProjectKasumi/android/manifest.git -b kasumi-v1
+git clone --depth=1 https://github.com/NFS86/local_manifest -b kasumi .repo/local_manifests
+repo sync -j8
 
 # build rom
 source build/envsetup.sh
