@@ -13,7 +13,7 @@ export KASUMI_BUILD_TYPE=auroraoss
 export KASUMI_SHIP_LAWNCHAIR=true
 export TARGET_BOOT_ANIMATION_RES=720
 mka bandori &
-sleep 30m
+sleep 60m
 kill %1
 
 # upload rom
