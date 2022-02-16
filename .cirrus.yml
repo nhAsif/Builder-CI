@@ -19,9 +19,6 @@ task:
      - df -h && lsblk && ls -l -a -h
   Sync_rom_script:
      - set -exv
-     - sudo mkdir ~/.ssh && sudo chmod 0700 ~/.ssh
-     - eval `ssh-agent -s`
-     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - mkdir -p $CIRRUS_WORKING_DIR/rom/$name_rom
      - cd $CIRRUS_WORKING_DIR/rom/$name_rom

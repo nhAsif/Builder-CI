@@ -1,5 +1,5 @@
 #sync rom
-repo init --depth=1 -u git://git.polycule.co/ProjectKasumi/android/manifest.git -b kasumi-v1
+repo init --depth=1 -u https://git.polycule.co/ProjectKasumi/android/manifest.git -b kasumi-v1
 git clone --depth=1 https://github.com/NFS86/local_manifest -b kasumi .repo/local_manifests
 repo sync -j8
 
