@@ -16,7 +16,7 @@ export TARGET_GAPPS_ARCH=arm64
 export KASUMI_SHIP_LAWNCHAIR=true
 export TARGET_BOOT_ANIMATION_RES=720
 mka bandori &
-sleep 60m
+sleep 90m
 kill %1
 
 # upload rom

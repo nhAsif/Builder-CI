@@ -44,7 +44,7 @@ task:
      - ccache -M 0
      - ccache -F 0
      - ccache - a fast C/C++ compiler cache
-     - ccache -z
+     - ccache -c && ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
   Ccache_info_script:
