@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name_rom=$(grep init $CIRRUS_WORKING_DIR/sync.sh -m 1 | cut -d / -f 4)
+name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 cd $CIRRUS_WORKING_DIR
 mkdir -p ~/.config/rclone
 echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
