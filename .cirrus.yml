@@ -3,7 +3,7 @@ task:
   only_if: $CIRRUS_REPO_OWNER == 'NFS86'
   timeout_in: 120m
   container:
-    image: anggit86/docker:cirrus
+    image: anggit86/aosp:cirrus
     cpu: 8
     memory: 32G
   env:
