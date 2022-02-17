@@ -1,7 +1,7 @@
 task:
   name: rom
   only_if: $CIRRUS_REPO_OWNER == 'NFS86'
-  timeout_in: 120m
+  timeout_in: 240m
   container:
     image: anggit86/docker:cirrus
     cpu: 8
@@ -11,6 +11,7 @@ task:
     rcloneconfig: "ENCRYPTED[44ffa3857f6328b03c137af6abf4f1aed91717c51cb06ae8c8fae74d96c0e8cc473a802fa8328e48c414c2de236fe21d]"
     CIRRUS_CLONE_DEPTH: 1
     CIRRUS_CPU: 15
+    CIRRUS_TIMEOUT_IN: 240m
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
   Environment_script:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
