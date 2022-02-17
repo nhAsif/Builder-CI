@@ -1,7 +1,7 @@
 #sync rom
 repo init --depth=1 --no-repo-verify -u https://github.com/projectarcana-aosp/manifest -b 12.x -g default,-mips,-darwin,-notdefault
 git clone --depth=1 https://github.com/NFS-projects/local_manifest -b PE-12 .repo/local_manifests
-repo sync -c -v --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
 source build/envsetup.sh
