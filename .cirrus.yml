@@ -3,7 +3,7 @@ task:
   only_if: $CIRRUS_REPO_OWNER == 'NFS86'
   timeout_in: 120m
   container:
-    image: gcr.io/cirrus-ci-community/nfs86/builder-ci/ubuntu-2004@sha256:30da834be88d348646ec18fe1a295cf37a3368677d4a1ad3b04c7bcfa681493d
+    image: anggit86/docker:cirrus
     cpu: 8
     memory: 32G
   env:

@@ -1,18 +1,15 @@
 #sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/NFS-projects/manifest.git -b kasumi-v1 -g default,-mips,-darwin,-notdefault
-git clone --depth=1 https://github.com/NFS86/local_manifest -b kasumi .repo/local_manifests
-repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+repo init --depth=1 --no-repo-verify -u https://github.com/projectarcana-aosp/manifest -b 12.x -g default,-mips,-darwin,-notdefault
+git clone --depth=1 https://github.com/NFS-projects/local_manifest -b PE-12 .repo/local_manifests
+repo sync -c -v --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
 source build/envsetup.sh
-lunch kasumi_rosy-userdebug
+lunch aosp_rosy-userdebug
 export TZ=Asia/Jakarta
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
-export KASUMI_BUILD_TYPE=auroraoss
-export KASUMI_SHIP_LAWNCHAIR=true
-export TARGET_BOOT_ANIMATION_RES=720
-mka bandori &
+make bacon &
 sleep 90m
 kill %1
 
