@@ -5,7 +5,8 @@ cd $CIRRUS_WORKING_DIR
 mkdir -p ~/.config/rclone
 echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
 mkdir -p $CIRRUS_WORKING_DIR/ccache
-rclone copy NFS:ccache/$name_rom/ccache.tar.gz /home/cirrus-ci-build -P
+url=https://needforspeed.projek.workers.dev/ccache/$name_rom/ccache.tar.gz
+time aria2c $url -x16 -s50
 time tar xf ccache.tar.gz
 rm -rf ccache.tar.gz
 cat > /etc/ccache.conf <<EOF

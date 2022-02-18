@@ -6,6 +6,7 @@ task:
     image: anggit86/docker:cirrus
     cpu: 8
     memory: 32G
+    
   env:
     BUILD_HOSTNAME: "nfs-project"
     rcloneconfig: "ENCRYPTED[44ffa3857f6328b03c137af6abf4f1aed91717c51cb06ae8c8fae74d96c0e8cc473a802fa8328e48c414c2de236fe21d]"
@@ -13,12 +14,19 @@ task:
     CIRRUS_CPU: 15
     CIRRUS_TIMEOUT_IN: 240m
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
+
+  Load_ccache_script:
+     - ./load.sh
+
   Environment_script:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
-  Show_command_Script:
+
+  Show_command_script:
      - cat $CIRRUS_WORKING_DIR/build.sh
+     
   Storage-Check_script:
      - df -h && lsblk && ls -l -a -h
+
   Sync_rom_script:
      - set -exv
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
@@ -48,8 +56,6 @@ task:
      
      - rm -rf Sync_rom.log
      
-  Load_script:
-     - ./load.sh
   Build_rom_script:
      - set -e
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
@@ -66,9 +72,11 @@ task:
      - ccache -c && ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
+     
   Ccache_info_script:
      - set -e
      - export CCACHE_DIR=$CIRRUS_WORKING_DIR/ccache
      - ccache -s
+
   Upload_build_script:
      - ./ziping.sh
