@@ -71,7 +71,6 @@ task:
      - ccache -o direct_mode=true
      - ccache -o file_clone=true
      - ccache -o inode_cache=true
-     - ccache -o sloppiness=modules, include_file_mtime, include_file_ctime, time_macros, pch_defines, file_stat_matches, clang_index_store, system_headers
      - ccache -M 0
      - ccache -F 0
      - ccache - a fast C/C++ compiler cache
