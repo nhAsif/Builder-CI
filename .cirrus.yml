@@ -15,13 +15,13 @@ task:
     CIRRUS_TIMEOUT_IN: 240m
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
 
-  Load_ccache_script:
+  Load_script:
      - ./load.sh
 
   Environment_script:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
 
-  Show_command_script:
+  Show_Command_script:
      - cat $CIRRUS_WORKING_DIR/build.sh
      
   Storage-Check_script:
