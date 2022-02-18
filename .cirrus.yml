@@ -3,7 +3,7 @@ task:
   only_if: $CIRRUS_REPO_OWNER == 'NFS86'
   timeout_in: 240m
   container:
-    image: anggit86/docker:cirrus
+    image: anggit86/ubuntu:21.10
     cpu: 8
     memory: 32G
     
@@ -66,6 +66,12 @@ task:
      - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
+     - ccache -o run_second_cpp=true
+     - ccache -o depend_mode=true
+     - ccache -o direct_mode=true
+     - ccache -o file_clone=true
+     - ccache -o inode_cache=true
+     - ccache -o sloppiness=modules, include_file_mtime, include_file_ctime, time_macros, pch_defines, file_stat_matches, clang_index_store, system_headers
      - ccache -M 0
      - ccache -F 0
      - ccache - a fast C/C++ compiler cache
