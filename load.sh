@@ -6,7 +6,7 @@ mkdir -p ~/.config/rclone
 echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
 mkdir -p $CIRRUS_WORKING_DIR/ccache
 url=https://needforspeed.projek.workers.dev/ccache/$name_rom/ccache.tar.gz
-time aria2c $url -x16 -s50
+time aria2c $url
 time tar xf ccache.tar.gz
 rm -rf ccache.tar.gz
 cat > /etc/ccache.conf <<EOF
