@@ -4,7 +4,7 @@ name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 backup_url=https://needforspeed.projek.workers.dev/ccache/$name_rom/$name_rom.tar.gz
 cd $CIRRUS_WORKING_DIR/rom
 aria2c $backup_url
-time tar xf $name_rom.tar.gz
+time tar -xvzf $name_rom.tar.gz
 rm -rf $name_rom.tar.gz
 cat > /etc/ccache.conf <<EOF
 compression = true

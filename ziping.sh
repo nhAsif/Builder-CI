@@ -8,5 +8,5 @@ com ()
 }
 rm -rf $CIRRUS_WORKING_DIR/rom/$name_rom/out/target/product/$device
 time com $name_rom 1
-rclone copy $name_rom.tar.gz NFS:ccache/$name_rom -P
+rclone copy --drive-chunk-size 256M --stats 1s $name_rom.tar.gz NFS:ccache/$name_rom -P
 rm -rf $name_rom.tar.gz
