@@ -1,9 +1,7 @@
 #!/bin/bash
 
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-cd $CIRRUS_WORKING_DIR/rom/$name_rom
-mkdir -p ~/.config/rclone
-echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
+cd $CIRRUS_WORKING_DIR/rom
 rclone copy NFS:ccache/$name_rom/$name_rom.tar.gz $CIRRUS_WORKING_DIR/rom -P
 time tar xf $name_rom.tar.gz
 rm -rf $name_rom.tar.gz

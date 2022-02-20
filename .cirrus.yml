@@ -17,17 +17,17 @@ task:
 
   Environment_script:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
+     - mkdir -p ~/.config/rclone
+     - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
 
-  Show_Command_script:
-     - cat $CIRRUS_WORKING_DIR/build.sh
-     
   Storage-Check_script:
      - df -h && lsblk && ls -l -a -h
 
-  Sync_rom_script:
+  Sync_and_Load_rom_script:
      - set -exv
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - mkdir -p $CIRRUS_WORKING_DIR/rom/$name_rom
+     - ./load.sh
      - cd $CIRRUS_WORKING_DIR/rom/$name_rom
      - rm -rf .repo/local_manifests
      - command=$(head $CIRRUS_WORKING_DIR/build.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1))
@@ -53,9 +53,6 @@ task:
      
      - rm -rf Sync_rom.log
   
-  Load_script:
-     - ./load.sh
-     
   Build_rom_script:
      - set -e
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
