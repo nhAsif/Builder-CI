@@ -10,7 +10,7 @@ export TZ=Asia/Jakarta
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
 brunch rosy &
-sleep 30m
+sleep 50m
 kill %1
 
 # upload rom
