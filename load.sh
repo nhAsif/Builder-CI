@@ -1,11 +1,9 @@
 #!/bin/bash
 
-name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-backup_url=https://needforspeed.projek.workers.dev/ccache/$name_rom/$name_rom.tar.gz
-cd $CIRRUS_WORKING_DIR/rom
-aria2c $backup_url
-time tar -xzf $name_rom.tar.gz
-rm -rf $name_rom.tar.gz
+cd $CIRRUS_WORKING_DIR
+rclone copy --drive-chunk-size 256M --stats 1s NFS:ccache/$name_rom/ccache.tar.gz $CIRRUS_WORKING_DIR -P
+tar xzf ccache.tar.gz
+rm -rf ccache.tar.gz
 cat > /etc/ccache.conf <<EOF
 compression = true
 run_second_cpp = true

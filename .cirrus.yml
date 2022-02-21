@@ -11,7 +11,6 @@ task:
     BUILD_HOSTNAME: "nfs-project"
     rcloneconfig: "ENCRYPTED[44ffa3857f6328b03c137af6abf4f1aed91717c51cb06ae8c8fae74d96c0e8cc473a802fa8328e48c414c2de236fe21d]"
     CIRRUS_CLONE_DEPTH: 1
-    SYNC_ROM: false
     CIRRUS_CPU: 10
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
 
@@ -21,8 +20,6 @@ task:
      - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
   
   Load_rom_script:
-     - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-     - mkdir -p $CIRRUS_WORKING_DIR/rom/$name_rom
      - ./load.sh
 
   Storage-Check_script:
@@ -35,9 +32,10 @@ task:
      - set -e
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - device=$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
+     - mkdir -p $CIRRUS_WORKING_DIR/rom/$name_rom
      - cd $CIRRUS_WORKING_DIR/rom/$name_rom
      - export ALLOW_MISSING_DEPENDENCIES=true
-     - export CCACHE_DIR=$CIRRUS_WORKING_DIR/rom/$name_rom/ccache
+     - export CCACHE_DIR=$CIRRUS_WORKING_DIR/ccache
      - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
