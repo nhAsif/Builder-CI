@@ -2,6 +2,7 @@
 
 set -exv
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
+mkdir -p $CIRRUS_WORKING_DIR/rom/$name_rom
 cd $CIRRUS_WORKING_DIR/rom/$name_rom
 rm -rf .repo/local_manifests
 command=$(head $CIRRUS_WORKING_DIR/build.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1))
