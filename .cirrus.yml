@@ -41,6 +41,8 @@ task:
      - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
+     - export PATH="/usr/lib/ccache:$PATH"
+     - which clang
      - ccache -o run_second_cpp=true
      - ccache -o depend_mode=true
      - ccache -o direct_mode=true
