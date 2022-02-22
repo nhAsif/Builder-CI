@@ -29,7 +29,7 @@ task:
   Storage-Check_background_script:
      - df -h && lsblk && ls -l -a -h
      
-  Sync-rom_background_script:
+  Sync-rom_script:
      - set -exv
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - mkdir -p $WORKDIR/rom/$name_rom
@@ -86,10 +86,10 @@ task:
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
      
-  Ccache-info_background_script:
+  Ccache-info_script:
      - set -e
      - export CCACHE_DIR=$WORKDIR/ccache
      - ccache -s
 
-  Upload-build_background_script:
+  Upload-build_script:
      - ./ziping.sh
