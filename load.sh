@@ -17,4 +17,4 @@ for t in ccache gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/loc
 update-ccache-symlinks
 dpkg -l ccache 
 export PATH="/usr/lib/ccache:$PATH"
-which clang
+which c89-gcc clang++-12 clang-13 gcc-11 c99-gcc clang++-13 clang-9 x86_64-linux-gnu-g++ clang clang++-9 g++ x86_64-linux-gnu-g++-11 clang++ clang-11 g++-11 x86_64-linux-gnu-gcc clang++-11 clang-12 gcc x86_64-linux-gnu-gcc-11
