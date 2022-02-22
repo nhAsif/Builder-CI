@@ -29,7 +29,7 @@ task:
   Storage-Check_background_script:
      - df -h && lsblk && ls -l -a -h
      
-  Sync-rom_background_script:
+  Sync-rom_script:
      - set -exv
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - mkdir -p $WORKDIR/rom/$name_rom
