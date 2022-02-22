@@ -19,8 +19,12 @@ task:
      - mkdir -p ~/.config/rclone
      - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
   
-  Load-rom_background_script:
-     - ./load.sh
+  Load-ccache_background_script:
+     - cd $WORKDIR
+     - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
+     - rclone copy --drive-chunk-size 256M --stats 1s NFS:ccache/$name_rom/ccache.tar.gz $WORKDIR -P
+     - tar xzf ccache.tar.gz
+     - rm -rf ccache.tar.gz
 
   Storage-Check_background_script:
      - df -h && lsblk && ls -l -a -h
@@ -35,15 +39,12 @@ task:
      - cd $WORKDIR/rom/$name_rom
      - export ALLOW_MISSING_DEPENDENCIES=true
      - export CCACHE_DIR=$WORKDIR/ccache
-     - export CCACHE_EXEC=$(which ccache)
+     - export CCACHE_EXEC=$(which ccache clang clang++)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
      - export PATH="/usr/lib/ccache:$PATH"
-     - which clang clang++
-     - ccache -o file_clone=true
-     - ccache -o inode_cache=true
-     - ccache -M 100
-     - ccache - a fast C/C++ compiler cache
+     - which ccache clang clang++
+     - ccache -M 50
      - ccache -c && ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
