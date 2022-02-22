@@ -3,7 +3,7 @@ task:
   only_if: $CIRRUS_REPO_OWNER == 'NFS86'
   timeout_in: 240m
   container:
-    image: anggit86/ubuntu:21.10
+    dockerfile: Dockerfile
     cpu: 8
     memory: 32G
     
