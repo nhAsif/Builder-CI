@@ -27,7 +27,7 @@ function checkrom() {
 }
 
 if ! [ -a "$ROM_OUT" ]; then
-	checkrom
+    checkrom
     kill %1
 fi
 
