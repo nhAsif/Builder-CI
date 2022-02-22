@@ -9,7 +9,8 @@ lunch aosp_rosy-userdebug
 export TZ=Asia/Jakarta
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
-mka bacon -j10 &
+curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="$(echo "${var_cache_report_config}")"
+mka bacon &
 sleep 95m
 kill %1
 
