@@ -6,7 +6,7 @@ ROM_OUT=$CIRRUS_WORKING_DIR/rom/$name_rom/out/target/product/$device/$name_rom*.
 cd $CIRRUS_WORKING_DIR
 
 function upload_rom() {
-   rclone copy --drive-chunk-size 300M --stats 1s $ROM_OUT NFS:rom/$name_rom -P
+   rclone copy --drive-chunk-size 256M --stats 1s $ROM_OUT NFS:rom/$name_rom -P
 }
 
 function upload_ccache() {
@@ -15,7 +15,7 @@ function upload_ccache() {
      tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
    }
    time com ccache 1
-   rclone copy --drive-chunk-size 300M --stats 1s ccache.tar.gz NFS:ccache/$name_rom -P
+   rclone copy --drive-chunk-size 256M --stats 1s ccache.tar.gz NFS:ccache/$name_rom -P
    rm -rf ccache.tar.gz
 }
 
