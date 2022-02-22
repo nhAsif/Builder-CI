@@ -2,4 +2,4 @@
 
 Test build any Rom A11 only
 
-https://api.cirrus-ci.com/github/NFS86/Builder-CI.svg?branch=main
+[![Build Status](https://api.cirrus-ci.com/github/NFS86/Builder-CI.svg)](https://cirrus-ci.com/github/NFS86/Builder-CI)
