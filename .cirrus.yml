@@ -29,7 +29,7 @@ task:
   Storage-Check_background_script:
      - df -h && lsblk && ls -l -a -h
      
-  Sync_rom_script:
+  Sync-rom_background_script:
      - set -exv
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - mkdir -p $WORKDIR/rom/$name_rom
@@ -69,14 +69,14 @@ task:
      - fi
      - rm -rf Sync_rom.log
      
-  Build_rom_script:
+  Build-rom_script:
      - set -e
      - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
      - device=$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
      - cd $WORKDIR/rom/$name_rom
      - export ALLOW_MISSING_DEPENDENCIES=true
      - export CCACHE_DIR=$WORKDIR/ccache
-     - export CCACHE_EXEC=$(which ccache clang clang++)
+     - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
      - export PATH="/usr/lib/ccache:$PATH"
@@ -86,10 +86,10 @@ task:
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
      
-  Ccache_info_script:
+  Ccache-info_background_script:
      - set -e
      - export CCACHE_DIR=$WORKDIR/ccache
      - ccache -s
 
-  Upload_build_script:
+  Upload-build_background_script:
      - ./ziping.sh
