@@ -6,6 +6,7 @@ task:
     image: anggit86/ubuntu:21.10
     cpu: 8
     memory: 32G
+    disk: 400
     
   env:
     BUILD_HOSTNAME: "nfs-project"
@@ -54,8 +55,7 @@ task:
      
   Ccache_info_script:
      - set -e
-     - name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-     - export CCACHE_DIR=$CIRRUS_WORKING_DIR/rom/$name_rom/ccache
+     - export CCACHE_DIR=$CIRRUS_WORKING_DIR/ccache
      - ccache -s
 
   Upload_build_script:
