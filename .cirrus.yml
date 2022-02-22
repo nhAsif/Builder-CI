@@ -6,13 +6,14 @@ task:
     image: anggit86/ubuntu:21.10
     cpu: 8
     memory: 32G
-    disk: 400
     
   env:
     BUILD_HOSTNAME: "nfs-project"
     rcloneconfig: "ENCRYPTED[44ffa3857f6328b03c137af6abf4f1aed91717c51cb06ae8c8fae74d96c0e8cc473a802fa8328e48c414c2de236fe21d]"
     CIRRUS_CLONE_DEPTH: 1
     CIRRUS_CPU: 10
+    TG_TOKEN: "ENCRYPTED[721861fde8c3e97670a0393d740968cb417613f82627fcfea3f7ebf0fda19397760da0bbcc013c60a72f5e8b4ec08e0a]"
+    TG_CHAT_ID: "ENCRYPTED[91026bae9e75f86df0f9a5c1c2c0256b4182a705447dad7b992aa62758fc09292e08cea9f8909a474d1a9daf99c3cfd3]"
     CIRRUS_WORKING_DIR: /home/cirrus-ci-build
 
   Environment_script:
@@ -51,6 +52,7 @@ task:
      - ccache - a fast C/C++ compiler cache
      - ccache -c && ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
+     - curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="$(echo "${var_cache_report_config}")"
      - bash -c "$command"
      
   Ccache_info_script:
