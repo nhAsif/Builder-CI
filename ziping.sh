@@ -23,7 +23,7 @@ function checkrom() {
     curl -s -X POST https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d disable_web_page_preview=true -d parse_mode=html -d text="<b>Build status:</b>%0A@Bella_Aprilia_27 <code>Sorry Building Rom $name_rom Gagal [❌]</code>%0A %0A<b>Notes:</b>%0A<code>Karena system hanya mendeteksi Build ccache</code>"
     echo Upload ccache only..
     upload_ccache
-    exit 1
+    kill %1
 }
 
 if ! [ -a "$ROM_OUT" ]; then
@@ -36,4 +36,3 @@ fi
 curl -s -X POST https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d disable_web_page_preview=true -d parse_mode=html -d text="<b>Build status:</b>%0A@Bella_Aprilia_27 <code>Building Rom $name_rom succes [✔️]</code>"
 upload_rom
 curl -s -X POST https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d disable_web_page_preview=true -d parse_mode=html -d text="Link : https://needforspeed.projek.workers.dev/rom/$name_rom/$(cd $WORKDIR/rom/$name_rom/out/target/product/$device && ls $name_rom*.zip)"
-upload_ccache

@@ -82,7 +82,6 @@ task:
      - export CCACHE_COMPRESSLEVEL=1
      - export CCACHE_LIMIT_MULTIPLE=0.9
      - export PATH="/usr/lib/ccache:$PATH"
-     - which ccache clang clang++
      - ccache -M 50
      - ccache -c && ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
