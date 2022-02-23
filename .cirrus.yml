@@ -79,6 +79,8 @@ task:
      - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
      - export CCACHE_COMPRESS=true
+     - export CCACHE_COMPRESSLEVEL=1
+     - export CCACHE_LIMIT_MULTIPLE=0.9
      - export PATH="/usr/lib/ccache:$PATH"
      - which ccache clang clang++
      - ccache -M 50
