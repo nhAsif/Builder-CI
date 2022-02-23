@@ -2,7 +2,7 @@
 
 export device=$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 export name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-export JOS=$WORKDIR/rom/$name_rom/out/target/product/$device/$name_rom*.zip
+export JOS=out/target/product/$device/$name_rom*.zip
 cd $WORKDIR
 
 function upload_rom() {
