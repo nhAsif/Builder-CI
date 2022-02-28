@@ -90,6 +90,14 @@ task:
      - ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command"
+     - if [[ $a == *'build stopped:'* ]]
+     - then
+     - set -e
+     - export CCACHE_DIR=$WORKDIR/ccache
+     - ccache -s
+     - ./ziping.sh
+     - else
+     - exit 1
      
   Ccache-info_script:
      - set -e
