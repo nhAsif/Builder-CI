@@ -89,18 +89,8 @@ task:
      - ccache -M 150
      - ccache -z
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
-     - bash -c "$command" &
-     - if [[ $a == *'failed to build some targets'* ]]
-     - then
-     - set -e
-     - export CCACHE_DIR=$WORKDIR/ccache
-     - ccache -s
-     - cd $WORKDIR
-     - ./ziping.sh
-     - else
-     - exit 1
-     - fi
-     
+     - bash -c "$command" 
+
   Ccache-info_script:
      - set -e
      - export CCACHE_DIR=$WORKDIR/ccache
