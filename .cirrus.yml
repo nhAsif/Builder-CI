@@ -19,6 +19,7 @@ task:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
   
   Load-Ccache_background_script:
+     - mkdir $WORKDIR/testnha
      - cd $WORKDIR
      - mkdir -p ~/.config/rclone
      - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
