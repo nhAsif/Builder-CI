@@ -99,6 +99,7 @@ task:
      - ./ziping.sh
      - else
      - exit 1
+     - fi
      
   Ccache-info_script:
      - set -e
