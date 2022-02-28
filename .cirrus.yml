@@ -2,7 +2,7 @@ env:
   rcloneconfig: "ENCRYPTED[26beb64227d1373eddf7f40e0184804cc813b1ff2aabf013714fc9857f692c39590d4594c51b211fcf3f4cad4fa5b094]"
   TG_TOKEN: "ENCRYPTED[b8dfc1a2afcd8c603b9dd7692b763c81c32aaa87b4b1f99428de1c14a66791b63f3c247c53e69542e36aba2822a87112]"
   TG_CHAT_ID: "ENCRYPTED[395f1b6b15ac31ef4446ae986a1f295e0f7565be314cfaf1c2847b7933a020f8bbe111694fb12215726f3af0d9819896]"
-  WORKDIR: "/tmp/ci"
+  WORKDIR: "/"
   EMAIL: "najmulhasan3609@gmail.com"
   CIRRUS_CLONE_DEPTH: "1"
 
@@ -19,7 +19,6 @@ task:
      - cat /etc/os* && env && nproc && gcc --version && clang --version
   
   Load-Ccache_background_script:
-     - mkdir $WORKDIR/testnha
      - cd $WORKDIR
      - mkdir -p ~/.config/rclone
      - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
