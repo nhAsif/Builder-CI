@@ -10,7 +10,7 @@ export TZ=Asia/Dhaka
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
 curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="$(echo "${var_cache_report_config}")"
-m bacon -j10
+m bacon
 
 
 # upload rom
