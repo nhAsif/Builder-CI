@@ -10,10 +10,6 @@ export TZ=Asia/Dhaka
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=userdebug
 curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="$(echo "${var_cache_report_config}")"
-make api-stubs-docs || echo no problem
-make hiddenapi-lists-docs || echo no problem
-make system-api-stubs-docs || echo no problem
-make test-api-stubs-docs || echo no problem
 make bacon -j10 &
 sleep 90m
 kill %1
