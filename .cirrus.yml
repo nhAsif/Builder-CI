@@ -80,14 +80,11 @@ task:
      - export ALLOW_MISSING_DEPENDENCIES=true
      - export PATH="/usr/lib/ccache:$PATH"
      - export CCACHE_DIR=$WORKDIR/ccache
-     - export CCACHE_EXEC=/usr/bin/ccache
+     - export CCACHE_EXEC=$(which ccache)
      - export USE_CCACHE=1
-     - export CCACHE_COMPRESS=true
-     - export CCACHE_COMPRESSLEVEL=1
-     - export CCACHE_LIMIT_MULTIPLE=0.9
-     - which ccache
-     - export CCACHE_MAXSIZE=50G
-     - ccache -z
+     - ccache -M 20G
+     - ccache -o compression=true 
+     - ccache -z 
      - command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# upload rom')
      - bash -c "$command" 
 
