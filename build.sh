@@ -8,7 +8,9 @@ source build/envsetup.sh
 lunch aosp_alioth-user
 export TZ=Asia/Dhaka
 curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="$(echo "${var_cache_report_config}")"
-mka bacon
+mka bacon &
+sleep 90m
+kill %1
 
 
 # upload rom
